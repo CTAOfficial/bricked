@@ -10,12 +10,10 @@ enum Direction {
 };
 
 class Game;
-class ScoreZone;
 
 class Player : public Basic2D {
 
 private:
-	ScoreZone* zone = nullptr;
 	Vector2 Bounds;
 	SDL_Keycode RightKey = NULL;
 	SDL_Keycode LeftKey = NULL;
@@ -27,7 +25,9 @@ public:
 	float speed = 500;
 
 	void Update(Game& game, float deltaTime) override;
-	void AssignZone(ScoreZone* scorezone);
+
+	void OnContact(Basic2D& contact) override;
+
 	void SetBounds(Vector2 bounds);
 
 	void SetRightKey(SDL_Keycode key);

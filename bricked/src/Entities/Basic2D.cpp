@@ -4,13 +4,8 @@
 
 Basic2D::Basic2D() {
     EntityManager::Add(this);
+    tag = "Basic2D";
 }
-
-Basic2D::~Basic2D()
-{
-    EntityManager::Remove(this);
-}
-
 void Basic2D::Draw(SDL_Renderer* renderer)
 {
     rect = SDL_FRect{ position.X, position.Y, rect.w, rect.h };
@@ -21,4 +16,8 @@ void Basic2D::Draw(SDL_Renderer* renderer)
 bool Basic2D::IsOverlapping(Basic2D& other)
 {
     return SDL_HasRectIntersectionFloat(const_cast<SDL_FRect*>(&rect), const_cast<SDL_FRect*>(&other.rect));
+}
+
+void Basic2D::Destroy(Basic2D& entity) {
+    EntityManager::AddToRemove(&entity);
 }

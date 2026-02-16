@@ -140,23 +140,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\CollisionSystem.cpp" />
     <ClCompile Include="src\Entities\Ball.cpp" />
     <ClCompile Include="src\Entities\Basic2D.cpp" />
     <ClCompile Include="src\Entities\Block.cpp" />
     <ClCompile Include="src\Entities\Player.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\UI\TextUI.cpp" />
     <ClCompile Include="src\Windowing\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\CollisionSystem.h" />
     <ClInclude Include="src\Entities\Ball.h" />
     <ClInclude Include="src\Entities\Basic2D.h" />
     <ClInclude Include="src\Entities\Block.h" />
     <ClInclude Include="src\Entities\Player.h" />
     <ClInclude Include="src\EntityManager.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Grid.h" />
     <ClInclude Include="src\InputManager.h" />
     <ClInclude Include="src\RGBA.h" />
     <ClInclude Include="src\UI\TextUI.h" />

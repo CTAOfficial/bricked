@@ -18,9 +18,11 @@ public:
 	SDL_Renderer* renderer = nullptr;
 	TTF_Font* font = nullptr;
 	SDL_Color color = { 255, 255, 255, SDL_ALPHA_OPAQUE };
-	SDL_Surface* text = nullptr;
+	SDL_Surface* surface = nullptr;
+	std::string text;
 
 
 	void Draw(SDL_Renderer* renderer) override;
 	void SetText(std::string text);
+	void SetSize(int size);
 };

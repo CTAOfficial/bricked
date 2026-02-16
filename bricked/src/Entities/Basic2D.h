@@ -11,7 +11,7 @@ private:
 	Basic2D();
 
 public:
-	~Basic2D();
+	~Basic2D() = default;
 
 	Basic2D(Vector2 pos, RGBA rgba) : Basic2D() {
 		position = pos;
@@ -31,5 +31,6 @@ public:
 	virtual void Draw(SDL_Renderer* renderer);
 	virtual void Update(Game& game, float deltaTime) {};
 	bool IsOverlapping(Basic2D& other);
+	static void Destroy(Basic2D& entity);
 	virtual void OnContact(Basic2D& contact) {};
 };

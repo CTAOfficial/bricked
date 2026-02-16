@@ -1,7 +1,9 @@
 #include "Game.h"
+#include "Grid.h"
 #include "InputManager.h"
 #include "Entities/Player.h"
 #include "EntityManager.h"
+#include "CollisionSystem.h"
 
 
 Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)size.Y)
@@ -17,13 +19,19 @@ Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)s
 	ball = new Ball(screenCenter, RGBA{ 0, 213, 145, 0 });
 	ball->SetBounds(Bounds);
 
+	grid = new Grid();
+	grid->CreateBlocks(renderer, Vector2{0, 0}, Vector2{ 50, 50 }, 5, 5, 10, 65);
+
+	//text
 }
 
 void Game::Update() {
 
 	if (InputManager::GetKey(SDLK_ESCAPE)) { Close(); }
 
+	EntityManager::PreUpdate();
 	EntityManager::Update(*this, deltaTime);
+	CollisionSystem::Update(EntityManager::GetEntities());
 	EntityManager::Draw(renderer);
 	
 }

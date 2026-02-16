@@ -32,9 +32,14 @@ void TextUI::Draw(SDL_Renderer* renderer) {
 
 void TextUI::SetText(std::string input)
 {
-	text = TTF_RenderText_Blended(font, input.c_str(), 0, color);
-	if (text) {
-		texture = SDL_CreateTextureFromSurface(renderer, text);
-		SDL_DestroySurface(text);
+	surface = TTF_RenderText_Blended(font, input.c_str(), 0, color);
+	if (surface) {
+		texture = SDL_CreateTextureFromSurface(renderer, surface);
+		SDL_DestroySurface(surface);
+		text = input;
 	}
+}
+
+void TextUI::SetSize(int size) {
+	TTF_SetFontSize(font, size);
 }

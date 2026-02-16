@@ -7,6 +7,7 @@
 #include "Vector2.h"
 
 class Player;
+class Grid;
 
 class Game : public Window {
 private:
@@ -22,6 +23,7 @@ public:
 
 	Player* player = nullptr;
 	Ball* ball = nullptr;
+	Grid* grid = nullptr;
 
 	void Update() override;
 };

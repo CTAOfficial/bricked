@@ -3,9 +3,10 @@
 #include <iostream>
 #include "../InputManager.h"
 
-Player::Player(int index, Vector2 pos, RGBA rgba) : Basic2D::Basic2D(pos, Vector2{ 75, 15 }, rgba)
+Player::Player(int index, Vector2 pos, RGBA rgba) : Basic2D(pos, Vector2{ 75, 15 }, rgba)
 {
 	playerIndex = index;
+	tag = "Player";
 }
 
 void Player::Update(Game& game, float deltaTime)
@@ -19,14 +20,19 @@ void Player::Update(Game& game, float deltaTime)
 		position.X -= speed * deltaTime;
 	}
 	if (InputManager::GetKeyDown(RightKey)) {
-		if ((position.X - 1) >= Bounds.X) { position.X = 0; }
+		if ((position.X - 1) >= Bounds.X) { position.X = 0 - rect.w; }
 		position.X += speed * deltaTime;
 	}
 }
 
-void Player::AssignZone(ScoreZone* scorezone)
+void Player::OnContact(Basic2D& contact)
 {
-	zone = scorezone;
+	if (typeid(this) != typeid(contact)) {
+		return;
+	}
+
+	Ball* ball = dynamic_cast<Ball*>(&contact);
+	ball->Flip(*this);
 }
 
 void Player::SetBounds(Vector2 bounds)

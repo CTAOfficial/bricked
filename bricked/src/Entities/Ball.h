@@ -16,6 +16,7 @@ private:
 public:
 	Ball(Vector2 pos, RGBA rgba);
 
+	int Damage = 1;
 	float speed = 200.0f;
 
 	void Update(Game& game, float deltaTime) override;
