@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="bricked/bricked.vcxproj" Id="fd1dc983-2429-43aa-8104-d90696a3c340" />
+</Solution>
