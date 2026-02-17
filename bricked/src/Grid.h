@@ -15,5 +15,5 @@ public:
 
 	std::vector<Block*> blocks;
 
-	void CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int columns, int rows, int amount, int gap);
+	void CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int columns, int rows, int gap);
 };

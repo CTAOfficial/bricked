@@ -2,6 +2,7 @@
 
 #include "Basic2D.h"
 #include "../UI/TextUI.h"
+#include <string>
 
 struct Block : public Basic2D {
 private:

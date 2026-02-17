@@ -4,6 +4,7 @@
 #include "Entities/Player.h"
 #include "EntityManager.h"
 #include "CollisionSystem.h"
+#include "Entities/Ball.h"
 
 
 Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)size.Y)
@@ -16,11 +17,16 @@ Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)s
 	player->SetRightKey(SDLK_D);
 	player->SetBounds(Bounds);
 
-	ball = new Ball(screenCenter, RGBA{ 0, 213, 145, 0 });
+	ball = new Ball(Vector2{ screenCenter.X, screenCenter.Y * 1.25f }, RGBA{ 0, 213, 145, 0 });
 	ball->SetBounds(Bounds);
 
 	grid = new Grid();
-	grid->CreateBlocks(renderer, Vector2{0, 0}, Vector2{ 50, 50 }, 5, 5, 10, 65);
+	grid->CreateBlocks(
+		renderer, Vector2{0, 0}, Vector2{ 50, 50 }, 
+		8, 
+		10, 
+		65
+	);
 
 	//text
 }
