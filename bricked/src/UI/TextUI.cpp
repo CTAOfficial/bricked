@@ -4,6 +4,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3/SDL_error.h>
 
+
 TextUI::TextUI(std::string fontPath, SDL_Renderer* renderer, Vector2 pos, RGBA rgba) : Basic2D(pos, rgba)
 {
 	this->renderer = renderer;
@@ -20,6 +21,11 @@ TextUI::TextUI(std::string fontPath, SDL_Renderer* renderer, Vector2 pos, RGBA r
 	SDL_GetTextureSize(texture, &rect.w, &rect.h);
 	rect.x = pos.X;
 	rect.y = pos.Y;
+}
+TextUI::~TextUI() 
+{
+	SDL_DestroyTexture(texture);
+	TTF_CloseFont(font);
 }
 
 void TextUI::Draw(SDL_Renderer* renderer) {

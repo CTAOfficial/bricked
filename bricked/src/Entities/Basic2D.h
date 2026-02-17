@@ -7,11 +7,11 @@
 class Game;
 
 class Basic2D {
-private:
+protected:
 	Basic2D();
 
 public:
-	~Basic2D() = default;
+	virtual ~Basic2D() = default;
 
 	Basic2D(Vector2 pos, RGBA rgba) : Basic2D() {
 		position = pos;

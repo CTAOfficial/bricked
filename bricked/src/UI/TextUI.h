@@ -9,7 +9,8 @@
 
 
 class TextUI : public Basic2D {
-private:
+protected:
+	~TextUI();
 
 public:
 	TextUI(std::string fontPath, SDL_Renderer* renderer, Vector2 pos, RGBA rgba);

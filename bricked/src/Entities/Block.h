@@ -11,18 +11,11 @@ private:
 
 	void Damage(int amount);
 
+protected:
+	~Block() override;
+
 public:
-	Block(SDL_Renderer* renderer, Vector2 pos, Vector2 dims, RGBA rgba) : Basic2D(pos, dims, rgba) {
-		tag = "Block";
-
-		Vector2 textPos = pos;
-
-		/*textPos.X * 0.25f;
-		textPos.Y * 2;*/
-		text = new TextUI{ "build/fonts/Melon Pop.ttf", renderer, textPos, RGBA { 0, 0, 0, 255 } };
-		text->SetText(std::to_string(Health));
-		text->SetSize(4);
-	}
+	Block(SDL_Renderer* renderer, Vector2 pos, Vector2 dims, RGBA rgba);
 
 	void Update(Game& game, float deltaTime) override;
 };
