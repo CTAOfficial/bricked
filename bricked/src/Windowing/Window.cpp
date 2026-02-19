@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Window.h"
-#include "../InputManager.h"
+#include "InputManager.h"
 
 Window::Window(std::string& title, int width, int height)
 {

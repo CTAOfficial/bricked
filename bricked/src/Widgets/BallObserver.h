@@ -1,13 +1,17 @@
 #pragma once
+#include "Widget.h"
 
 class Ball;
 
-class BallObserver {
-public:
-	BallObserver(Ball* ball) : ball(ball) {
-	}
-
+class BallObserver : public Widget {
+private:
 	Ball* ball;
 
-	void Draw();
+protected:
+	void OnDraw() override;
+
+public:
+	BallObserver(Ball* ball) : Widget("Ball Observer"), ball(ball) {
+	}
+
 };

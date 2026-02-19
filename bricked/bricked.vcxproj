@@ -113,6 +113,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include; $(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)include; $(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +160,7 @@
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\UI\TextUI.cpp" />
     <ClCompile Include="src\Widgets\BallObserver.cpp" />
+    <ClCompile Include="src\Widgets\Widget.cpp" />
     <ClCompile Include="src\Windowing\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +177,8 @@
     <ClInclude Include="src\UI\TextUI.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Widgets\BallObserver.h" />
+    <ClInclude Include="src\Widgets\EntityManagementObserver.h" />
+    <ClInclude Include="src\Widgets\Widget.h" />
     <ClInclude Include="src\Windowing\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

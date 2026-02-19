@@ -3,16 +3,15 @@
 #include<string>
 #include <format>
 
-#include "../Entities/Ball.h"
+#include "Entities/Ball.h"
 
-void BallObserver::Draw()
+void BallObserver::OnDraw()
 {
-	ImGui::Begin("Ball Observer");
-
 	std::string ballText = std::format("Ball: {:p}", (void*)ball);
 	ImGui::Text(ballText.c_str());
 
-	if (ImGui::Button("Debug Mode")) {
+	std::string debugText = "Debug Mode: " + std::to_string(ball->DebugMode);
+	if (ImGui::Button(debugText.c_str())) {
 		ball->DebugMode = !ball->DebugMode;
 	}
 	if (ImGui::Button("Reset")) {
@@ -22,11 +21,7 @@ void BallObserver::Draw()
 	Vector2 vel = ball->GetVelocity();
 	float v[2] = { vel.X, vel.Y };
 	ImGui::InputFloat2("Velocity", v);
-
-	std::string debugText = "Debug Mode: {:p}" + std::to_string(ball->DebugMode);
 	
 	ImGui::InputFloat("Speed: ", &ball->speed);
 	ImGui::InputInt("Damage: ", &ball->Damage);
-
-	ImGui::End();
 }
