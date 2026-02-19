@@ -5,6 +5,7 @@
 #include "Vector2.h"
 #include "UI/TextUI.h"
 #include <string>
+#include "Widgets/EntityManagementObserver.h"
 
 
 class BallObserver;
@@ -28,6 +29,7 @@ public:
 	Ball* ball = nullptr;
 	Grid* grid = nullptr;
 	BallObserver* ballObserver = nullptr;
+	EntityManagementObserver* entityManager = nullptr;
 
 	void Run() override;
 	void Start() override;

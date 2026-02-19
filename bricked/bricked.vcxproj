@@ -160,6 +160,7 @@
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\UI\TextUI.cpp" />
     <ClCompile Include="src\Widgets\BallObserver.cpp" />
+    <ClCompile Include="src\Widgets\EntityManagementObserver.cpp" />
     <ClCompile Include="src\Widgets\Widget.cpp" />
     <ClCompile Include="src\Windowing\Window.cpp" />
   </ItemGroup>

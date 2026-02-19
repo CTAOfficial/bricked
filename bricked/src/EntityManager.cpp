@@ -12,15 +12,9 @@ void EntityManager::Add(Basic2D* entity)
 void EntityManager::AddToRemove(Basic2D* entity) {
 	DestroyQueue.push(entity);
 }
-bool EntityManager::Remove(Basic2D* entity)
+void EntityManager::Remove(Basic2D* entity)
 {
-	auto iterator = std::find(Entities.begin(), Entities.end(), entity);
-	if (iterator != Entities.end()) {
-		Entities.erase(iterator);
-		return true;
-	}
-
-	return false;
+	std::erase(Entities, entity);
 }
 
 void EntityManager::Draw(SDL_Renderer* renderer)
@@ -39,9 +33,15 @@ void EntityManager::Update(Game& game, float deltaTime)
 
 void EntityManager::PreUpdate()
 {
-	for (int i = 0; i < DestroyQueue.size(); i++) {
+	while (!DestroyQueue.empty()) {
 		Basic2D* entity = DestroyQueue.top();
 		Remove(entity);
 		DestroyQueue.pop();
+	}
+}
+
+void EntityManager::Shutdown() {
+	for (Basic2D* entity : Entities) {
+		delete entity;
 	}
 }

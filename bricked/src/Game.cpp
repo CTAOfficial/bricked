@@ -34,6 +34,7 @@ Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)s
 	);
 	
 	ballObserver = new BallObserver{ ball };
+	entityManager = new EntityManagementObserver{};
 	//text
 }
 
@@ -96,11 +97,12 @@ void Game::Update() {
 	EntityManager::Update(*this, deltaTime);
 	CollisionSystem::Update(EntityManager::GetEntities());
 	ballObserver->Draw();
+	entityManager->Draw();
 	EntityManager::Draw(renderer);
 	
 }
 
 void Game::OnClose()
 {
-	
+	EntityManager::Shutdown();
 }

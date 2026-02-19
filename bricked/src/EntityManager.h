@@ -10,7 +10,7 @@ class EntityManager {
 private:
 	static std::vector<Basic2D*> Entities;
 	static std::stack<Basic2D*> DestroyQueue;
-	static bool Remove(Basic2D* entity);
+	static void Remove(Basic2D* entity);
 
 public:
 	static void Add(Basic2D* entity);
@@ -18,6 +18,7 @@ public:
 	static void Draw(SDL_Renderer* renderer);
 	static void Update(Game& game, float deltaTime);
 	static void PreUpdate();
+	static void Shutdown();
 
 	static std::vector<Basic2D*> GetEntities() {
 		return Entities;

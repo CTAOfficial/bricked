@@ -78,6 +78,9 @@
     <ClCompile Include="src\Widgets\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Widgets\EntityManagementObserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Entities\Ball.h">
