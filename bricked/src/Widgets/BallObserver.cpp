@@ -10,10 +10,8 @@ void BallObserver::OnDraw()
 	std::string ballText = std::format("Ball: {:p}", (void*)ball);
 	ImGui::Text(ballText.c_str());
 
-	std::string debugText = "Debug Mode: " + std::to_string(ball->DebugMode);
-	if (ImGui::Button(debugText.c_str())) {
-		ball->DebugMode = !ball->DebugMode;
-	}
+	std::string debugText = "Debug Mode" + std::to_string(ball->DebugMode);
+	ImGui::Checkbox("Debug Mode", &ball->DebugMode);
 	if (ImGui::Button("Reset")) {
 		ball->Reset();
 	}
