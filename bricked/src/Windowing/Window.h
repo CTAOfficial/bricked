@@ -3,19 +3,22 @@
 #include <string>
 
 class Window {
-private:
-
-	bool IsRunning = false;
-
 
 protected:
 	Window(std::string& title, int width, int height);
+
+	bool IsRunning = false;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
 	double deltaTime = 0.0;
 	Uint64 lastTick{ 0 };
 	Uint64 currentTick{ 0 };
+
+	virtual void Start() {}
+	virtual void HandlePoll(SDL_Event event);
+	virtual void Update() {}
+	virtual void OnClose(){}
 
 public:
 	~Window();	
@@ -24,11 +27,8 @@ public:
 	int Width;
 	int Height;
 
-	void Run();
-	virtual void HandlePoll(SDL_Event event);
-	virtual void Update(){}
+	virtual void Run();
 	void Close();
-	virtual void OnClose(){}
 
 	static Window* Create(std::string title, int width, int height);
 };

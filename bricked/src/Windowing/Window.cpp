@@ -38,6 +38,7 @@ void Window::Run()
 	IsRunning = true;
 	currentTick = SDL_GetTicks();
 
+	Start();
 	while (IsRunning) {
 		lastTick = currentTick;
 		currentTick = SDL_GetTicks();

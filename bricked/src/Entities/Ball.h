@@ -16,10 +16,16 @@ private:
 public:
 	Ball(Vector2 pos, RGBA rgba);
 
+	bool DebugMode = false;
 	int Damage = 1;
 	float speed = 200.0f;
 
 	void Update(Game& game, float deltaTime) override;
+	void Draw(SDL_Renderer* renderer) override;
+
+	Vector2 GetVelocity() {
+		return velocity;
+	}
 
 	void Flip(Basic2D& contact);
 	void Reset();

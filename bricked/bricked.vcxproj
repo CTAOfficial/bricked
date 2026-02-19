@@ -72,11 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)build\</OutDir>
-    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include\imgui;$(ProjectDir)include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)build\</OutDir>
-    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)include\imgui;$(ProjectDir)include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -139,6 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\imgui\backends\imgui_impl_sdl3.cpp" />
+    <ClCompile Include="include\imgui\backends\imgui_impl_sdlrenderer3.cpp" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\CollisionSystem.cpp" />
     <ClCompile Include="src\Entities\Ball.cpp" />
@@ -150,6 +157,7 @@
     <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\UI\TextUI.cpp" />
+    <ClCompile Include="src\Widgets\BallObserver.cpp" />
     <ClCompile Include="src\Windowing\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +173,7 @@
     <ClInclude Include="src\RGBA.h" />
     <ClInclude Include="src\UI\TextUI.h" />
     <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\Widgets\BallObserver.h" />
     <ClInclude Include="src\Windowing\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

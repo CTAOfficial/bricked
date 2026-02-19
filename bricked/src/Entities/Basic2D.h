@@ -17,15 +17,21 @@ public:
 		position = pos;
 		colour = rgba;
 		rect = { (float)pos.X, (float)pos.Y, 0, 0 };
+		center = { rect.w * 0.5f, rect.h * 0.5f };
+		centerPos = Vector2{ position.X + center.X, position.Y + center.Y };
 	}
 	Basic2D(Vector2 pos, Vector2 dims, RGBA rgba) : Basic2D(pos, rgba) {
 		rect.w = dims.X;
 		rect.h = dims.Y;
+		center = { rect.w * 0.5f, rect.h * 0.5f };
+		centerPos = Vector2{ position.X + center.X, position.Y + center.Y };
 	}
 
 	Vector2 position;
 	RGBA colour{ 0, 0, 0, 0 };
 	SDL_FRect rect;
+	Vector2 center;
+	Vector2 centerPos;
 	std::string tag;
 
 	virtual void Draw(SDL_Renderer* renderer);

@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include "../RGBA.h"
 #include "../Game.h"
+#include "../InputManager.h"
 #include <iostream>
 
 
@@ -13,14 +14,26 @@ Ball::Ball(Vector2 pos, RGBA rgba) : Basic2D(pos, Vector2{ 10, 10 }, rgba)
 
 void Ball::Update(Game& game, float deltaTime)
 {
-
 	float movementX = (velocity.X * speed) * deltaTime;
 	float movementY = (velocity.Y * speed) * deltaTime;
 
 	position.X += movementX;
 	position.Y += movementY;
 
+	centerPos = Vector2{ position.X + center.X, position.Y + center.Y };
+
 	CheckBounds();
+}
+
+void Ball::Draw(SDL_Renderer* renderer)
+{
+	Basic2D::Draw(renderer);
+
+	if (DebugMode) {
+		// Draw a line from top-left to bottom-right
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderLine(renderer, centerPos.X, centerPos.Y, centerPos.X + (velocity.X * 100), centerPos.Y + (velocity.Y * 100));
+	}
 }
 
 void Ball::Flip(Basic2D& contact)
@@ -42,7 +55,7 @@ void Ball::Reset()
 
 void Ball::CheckBounds()
 {
-	if (position.X < 0 || position.X > bounds.X) {
+	if (position.X < 0 || position.X + rect.w > bounds.X) {
 		velocity.X = -velocity.X;
 		LastContact = nullptr;
 	}
@@ -51,7 +64,7 @@ void Ball::CheckBounds()
 		velocity.Y = -velocity.Y;
 		LastContact = nullptr;
 	}
-	else if (position.Y > bounds.Y) {
+	else if (position.Y + rect.h > bounds.Y) {
 		Reset();
 	}
 }
