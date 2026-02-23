@@ -1,5 +1,6 @@
 #include "EntityManager.h"
 #include "Entities/Basic2D.h"
+#include <iostream>
 
 std::vector<Basic2D*> EntityManager::Entities;
 std::stack<Basic2D*> EntityManager::DestroyQueue;
@@ -41,7 +42,8 @@ void EntityManager::PreUpdate()
 }
 
 void EntityManager::Shutdown() {
-	for (Basic2D* entity : Entities) {
-		delete entity;
+	for (int i = 0; i < Entities.size(); i++) {
+		Remove(Entities[i]);
+		delete Entities[i];
 	}
 }

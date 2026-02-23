@@ -66,6 +66,8 @@ void Game::Run()
 			HandlePoll(event);
 		}
 
+		if (!IsRunning) { break; }
+
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 		SDL_RenderClear(renderer);
 		Update();
@@ -91,7 +93,7 @@ void Game::Start()
 
 void Game::Update() {
 
-	if (InputManager::GetKey(SDLK_ESCAPE)) { Close(); }
+	if (InputManager::GetKey(SDLK_ESCAPE)) { Close(); return; }
 
 	EntityManager::PreUpdate();
 	EntityManager::Update(*this, deltaTime);

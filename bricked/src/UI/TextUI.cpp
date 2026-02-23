@@ -25,7 +25,7 @@ TextUI::TextUI(std::string fontPath, SDL_Renderer* renderer, Vector2 pos, RGBA r
 TextUI::~TextUI() 
 {
 	SDL_DestroyTexture(texture);
-	TTF_CloseFont(font);
+	//TTF_CloseFont(font);
 }
 
 void TextUI::Draw(SDL_Renderer* renderer) {
