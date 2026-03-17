@@ -38,6 +38,7 @@ void EntityManager::PreUpdate()
 		Basic2D* entity = DestroyQueue.top();
 		Remove(entity);
 		DestroyQueue.pop();
+		delete entity;
 	}
 }
 
