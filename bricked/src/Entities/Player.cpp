@@ -1,7 +1,10 @@
 #include "Player.h"
+#include "Ball.h"
+#include "Grid.h"
 #include "../Game.h"
 #include <iostream>
 #include "../InputManager.h"
+
 
 Player::Player(int index, Vector2 pos, RGBA rgba) : Basic2D(pos, Vector2{ 75, 15 }, rgba)
 {
@@ -9,11 +12,26 @@ Player::Player(int index, Vector2 pos, RGBA rgba) : Basic2D(pos, Vector2{ 75, 15
 	tag = "Player";
 }
 
+Player::~Player()
+{
+	Destroy(*liveUI);
+}
+
+
 void Player::Update(Game& game, float deltaTime)
 {
-	if (IsOverlapping(*game.ball)) {
-		game.ball->Flip(*this);
+	if (game.grid->blocks.empty() || InputManager::GetKey(SDLK_LSHIFT)) {
+		GameOver();
 	}
+
+	if (InputManager::GetKey(SDLK_LCTRL)) {
+		game.InitializeLevel();
+		return;
+	}
+
+	if (IsOverlapping(*ball)) {
+		ball->Flip(*this);
+	}	
 
 	if (InputManager::GetKeyDown(LeftKey)) {
 		if ((position.X + rect.w) <= 0) { position.X = Bounds.X - 1; }
@@ -48,4 +66,37 @@ void Player::SetRightKey(SDL_Keycode key)
 void Player::SetLeftKey(SDL_Keycode key)
 {
 	LeftKey = key;
+}
+
+void Player::SetBall(Ball& ball)
+{
+	this->ball = &ball;
+	ball.player = this;
+}
+
+
+void Player::SetLives(int amount)
+{
+	lives = amount;
+
+	if (lives <= 0) {
+		Die();
+		return;
+	}
+
+	liveUI->SetText(std::to_string(lives));
+}
+
+void Player::Die()
+{
+	colour = RGBA{ 0, 0, 0, 0 };
+	GameOver();
+}
+
+void Player::GameOver()
+{
+	ball->speed = 0;
+	speed = 0;
+
+	liveUI->SetText("GAME OVER - Left control to Restart");
 }

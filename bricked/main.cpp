@@ -16,8 +16,6 @@ static bool Initialize() {
 		return false;
 	}
 
-
-
 	return true;
 }
 

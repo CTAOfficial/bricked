@@ -1,10 +1,15 @@
 #include "Grid.h"
+#include "Entities/Basic2D.h"
 #include "Entities/Block.h"
 #include <util.h>
 
 
 void Grid::CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int columns, int rows, int gap)
 {
+	if (!blocks.empty()) {
+		Clear();
+	}
+
 	int x = 0;
 	int y = 0;
 	RGBA rgba{ 255, 0, 0, 255 };
@@ -39,5 +44,15 @@ void Grid::CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int c
 
 		rgba.B += b;
 		rgba.R -= r;
+	}
+}
+
+void Grid::Clear()
+{
+	for (int i = 0; i < blocks.size(); i++) {
+		Block* block = blocks.at(i);
+		Basic2D::Destroy(*block);
+		std::erase(blocks, block);
+		i--;
 	}
 }

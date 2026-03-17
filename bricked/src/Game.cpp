@@ -16,24 +16,9 @@ Game::Game(std::string& title, Vector2 size) : Window(title, (int)size.X, (int)s
 {
 	screenCenter = Vector2{ size.X * 0.5f, size.Y * 0.5f };
 	Bounds = size;
-
-	player = new Player(0, Vector2{ screenCenter.X * 0.5f, Bounds.Y * 0.9f }, RGBA{ 255, 255, 255, 255 });
-	player->SetLeftKey(SDLK_A);
-	player->SetRightKey(SDLK_D);
-	player->SetBounds(Bounds);
-
-	ball = new Ball(Vector2{ screenCenter.X, screenCenter.Y * 1.25f }, RGBA{ 0, 213, 145, 0 });
-	ball->SetBounds(Bounds);
-
-	grid = new Grid();
-	grid->CreateBlocks(
-		renderer, Vector2{0, 0}, Vector2{ 50, 50 }, 
-		8, 
-		10, 
-		65
-	);
 	
-	ballObserver = new BallObserver{ ball };
+	InitializeLevel();
+
 	entityManager = new EntityManagementObserver{};
 	//text
 }
@@ -43,6 +28,44 @@ Game::~Game()
 	ImGui_ImplSDLRenderer3_Shutdown();
 	ImGui_ImplSDL3_Shutdown();
 	ImGui::DestroyContext();
+}
+
+void Game::InitializeLevel()
+{
+	if (!player) {
+		player = new Player(0, Vector2{ Bounds.X * 0.5f, Bounds.Y * 0.9f }, RGBA{ 255, 255, 255, 255 });
+		player->liveUI = new TextUI{ "build/fonts/Melon Pop.ttf", renderer, Vector2{Bounds.X * 0.5f, Bounds.Y * 0.95f}, RGBA{ 255, 255, 255, 255 } };
+
+		player->SetLeftKey(SDLK_A);
+		player->SetRightKey(SDLK_D);
+		player->SetBounds(Bounds);
+	}
+	else {
+		player->position = Vector2{ Bounds.X * 0.5f, Bounds.Y * 0.9f };
+	}
+	player->SetLives(3);
+
+	if (!ball) {
+		ball = new Ball(Vector2{ screenCenter.X, screenCenter.Y * 1.25f }, RGBA{ 0, 213, 145, 0 });
+		ball->SetBounds(Bounds);
+		ballObserver = new BallObserver{ ball };
+
+		player->SetBall(*ball);
+	}
+	else {
+		ball->Reset();
+	}
+
+	if (!grid) {
+		grid = new Grid();
+	}
+	grid->CreateBlocks(
+		renderer, Vector2{ 0, 0 }, Vector2{ 50, 50 },
+		8,
+		10,
+		65
+	);
+	
 }
 
 void Game::Run()

@@ -3,7 +3,7 @@
 #include "Basic2D.h"
 #include "../UI/TextUI.h"
 
-struct Block : public Basic2D {
+class Block : public Basic2D {
 private:
 	TextUI* text;
 	int health = 1;

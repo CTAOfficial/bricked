@@ -3,11 +3,12 @@
 #include <iostream>
 
 std::vector<Basic2D*> EntityManager::Entities;
+std::queue<Basic2D*> EntityManager::ConstructionQueue;
 std::stack<Basic2D*> EntityManager::DestroyQueue;
 
 void EntityManager::Add(Basic2D* entity)
 {
-	Entities.push_back(entity);
+	ConstructionQueue.push(entity);
 }
 
 void EntityManager::AddToRemove(Basic2D* entity) {
@@ -40,11 +41,16 @@ void EntityManager::PreUpdate()
 		DestroyQueue.pop();
 		delete entity;
 	}
+
+	while (!ConstructionQueue.empty()) {
+		Basic2D* entity = ConstructionQueue.front();
+		Entities.push_back(entity);
+		ConstructionQueue.pop();
+	}
 }
 
 void EntityManager::Shutdown() {
-	for (int i = 0; i < Entities.size(); i++) {
-		Remove(Entities[i]);
-		delete Entities[i];
+	for (Basic2D* entity : Entities) {
+		delete entity;
 	}
 }

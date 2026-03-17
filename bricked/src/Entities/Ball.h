@@ -1,6 +1,9 @@
 #pragma once
 #include "Basic2D.h"
 #include "../RGBA.h"
+#include <vector>
+
+class Player;
 
 class Ball : public Basic2D {
 private:
@@ -14,6 +17,7 @@ private:
 	void CheckBounds();
 
 public:
+	Player* player = nullptr;
 	Ball(Vector2 pos, RGBA rgba);
 
 	bool DebugMode = false;
@@ -29,6 +33,9 @@ public:
 
 	bool Flip(Basic2D& contact);
 	void Reset();
+	Vector2 GetBounds() const {
+		return bounds;
+	}
 	void SetBounds(Vector2 bounds);
 	Basic2D* LastContact() const {
 		return lastContact;

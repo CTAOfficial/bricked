@@ -23,6 +23,8 @@ public:
 	Game(std::string& title, Vector2 size);
 	~Game();
 
+	void InitializeLevel();
+
 	Vector2 screenCenter;
 
 	Player* player = nullptr;

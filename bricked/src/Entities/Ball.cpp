@@ -1,7 +1,7 @@
 #include "Ball.h"
 #include "../RGBA.h"
 #include "../Game.h"
-#include "../InputManager.h"
+#include "Player.h"
 #include <iostream>
 
 
@@ -55,6 +55,8 @@ void Ball::Reset()
 	speed = originalSpeed;
 	position = originalPosition;
 	lastContact = nullptr;
+
+	player->SetLives(player->GetLives() - 1);
 }
 
 void Ball::CheckBounds()
