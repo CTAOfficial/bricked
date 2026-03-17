@@ -10,8 +10,7 @@ Block::Block(SDL_Renderer* renderer, Vector2 pos, Vector2 dims, RGBA rgba) : Bas
 	/*textPos.X * 0.25f;
 	textPos.Y * 2;*/
 	text = new TextUI{ "build/fonts/Melon Pop.ttf", renderer, textPos, RGBA { 255, 255, 255, 255 } };
-	text->SetText(std::to_string(Health));
-	text->SetSize(4);
+	text->SetText(std::to_string(health));
 }
 
 Block::~Block()
@@ -22,20 +21,26 @@ Block::~Block()
 
 void Block::Update(Game& game, float deltaTime)
 {
-	if (IsOverlapping(*game.ball)) {
-		game.ball->Flip(*this);
-		Damage(game.ball->Damage);
+	Ball& ball = *game.ball;
+	if (IsOverlapping(ball) && ball.Flip(*this)) {
+		Damage(game.ball->Damage);		
 	}
+}
+
+void Block::SetHealth(int amount)
+{
+	health = amount;
+	text->SetText(std::to_string(health));
 }
 
 void Block::Damage(int amount)
 {
-	Health -= amount;
+	int projected = health - amount;
 
-	if (Health <= 0) {
+	if (projected <= 0) {
 		Destroy(*this);
 		return;
 	}
 
-	text->SetText(std::to_string(Health));
+	SetHealth(projected);
 }

@@ -36,33 +36,37 @@ void Ball::Draw(SDL_Renderer* renderer)
 	}
 }
 
-void Ball::Flip(Basic2D& contact)
+bool Ball::Flip(Basic2D& contact)
 {
-	if (LastContact != nullptr && IsOverlapping(*LastContact)) {
-		return;
+	if ((lastContact != nullptr && IsOverlapping(*lastContact))) {
+		return false;
 	}
-	LastContact = &contact;
+	else if (&contact == lastContact) {
+		return false;
+	}
 
+	lastContact = &contact;
 	velocity = Vector2{ velocity.X, -velocity.Y };
+	return true;
 }
 
 void Ball::Reset()
 {
 	speed = originalSpeed;
 	position = originalPosition;
-	LastContact = nullptr;
+	lastContact = nullptr;
 }
 
 void Ball::CheckBounds()
 {
 	if (position.X < 0 || position.X + rect.w > bounds.X) {
 		velocity.X = -velocity.X;
-		LastContact = nullptr;
+		lastContact = nullptr;
 	}
 	if (position.Y < 0) {
 		position.Y = 0;
 		velocity.Y = -velocity.Y;
-		LastContact = nullptr;
+		lastContact = nullptr;
 	}
 	else if (position.Y + rect.h > bounds.Y) {
 		Reset();

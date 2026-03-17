@@ -1,5 +1,6 @@
 #include "Grid.h"
 #include "Entities/Block.h"
+#include <util.h>
 
 
 void Grid::CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int columns, int rows, int gap)
@@ -27,6 +28,7 @@ void Grid::CreateBlocks(SDL_Renderer* renderer, Vector2 pos, Vector2 size, int c
 		for (int j = 0; j < rows; j++) {
 
 			Block* block = new Block{ renderer, Vector2{ pos.X + size.X + x, pos.Y + size.Y + y }, size, rgba };
+			block->SetHealth(util::GetRandom(1, 5));
 			blocks.push_back(block);
 			x += gap;
 			rgba.G += g;

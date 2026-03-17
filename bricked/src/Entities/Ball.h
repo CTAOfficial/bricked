@@ -7,7 +7,7 @@ private:
 	Vector2 velocity;
 	Vector2 bounds;
 	bool Flipping = false;
-	Basic2D* LastContact = nullptr;
+	Basic2D* lastContact = nullptr;
 	float originalSpeed = 0;
 	Vector2 originalPosition;
 
@@ -27,7 +27,10 @@ public:
 		return velocity;
 	}
 
-	void Flip(Basic2D& contact);
+	bool Flip(Basic2D& contact);
 	void Reset();
 	void SetBounds(Vector2 bounds);
+	Basic2D* LastContact() const {
+		return lastContact;
+	}
 };

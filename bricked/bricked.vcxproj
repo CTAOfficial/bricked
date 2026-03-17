@@ -176,6 +176,7 @@
     <ClInclude Include="src\InputManager.h" />
     <ClInclude Include="src\RGBA.h" />
     <ClInclude Include="src\UI\TextUI.h" />
+    <ClInclude Include="src\util.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Widgets\BallObserver.h" />
     <ClInclude Include="src\Widgets\EntityManagementObserver.h" />
