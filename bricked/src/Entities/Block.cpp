@@ -10,6 +10,7 @@ Block::Block(SDL_Renderer* renderer, Vector2 pos, Vector2 dims, RGBA rgba) : Bas
 	/*textPos.X * 0.25f;
 	textPos.Y * 2;*/
 	text = new TextUI{ "build/fonts/Melon Pop.ttf", renderer, textPos, RGBA { 255, 255, 255, 255 } };
+	text->offset = Vector2{ rect.w * 0.5f, rect.h * 0.5f};
 	text->SetText(std::to_string(health));
 }
 

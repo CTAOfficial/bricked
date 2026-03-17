@@ -26,8 +26,8 @@ TextUI::~TextUI()
 
 void TextUI::Draw(SDL_Renderer* renderer) {
 
-	rect.x = position.X + rect.w;
-	rect.y = position.Y + rect.h;
+	rect.x = position.X + offset.X;
+	rect.y = position.Y + offset.Y;
 	SDL_SetRenderDrawColor(renderer, colour.R, colour.G, colour.B, colour.A);
 	SDL_RenderTexture(renderer, texture, NULL, &rect);
 }
@@ -45,8 +45,6 @@ void TextUI::SetText(std::string input)
 	text = input;
 
 	SDL_GetTextureSize(texture, &rect.w, &rect.h);
-	//rect.x = position.X += rect.w;
-	//rect.y = position.Y += rect.h;
 }
 
 void TextUI::SetSize(int size) {

@@ -22,6 +22,7 @@ public:
 	SDL_Surface* surface = nullptr;
 	std::string text;
 
+	Vector2 offset;
 
 	void Draw(SDL_Renderer* renderer) override;
 	void SetText(std::string text);
